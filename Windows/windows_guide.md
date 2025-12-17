@@ -19,19 +19,10 @@ Estimated total time: **15–25 minutes** (plus Snapchat download time)
 
 ## Before You Start
 
-### 1. Find Your Username
+### 1. Choose Where to Store Your Memories
 
-- Press `Windows Key + R`
-- Type `cmd` and press Enter
-- Type `echo %USERNAME%` and press Enter
-- Write down the username shown (you'll need this exact spelling)
-
-### 2. Choose Where to Store Your Memories
-
-**Recommended location:**
+**Recommended location (this guide assumes this will be your storage location):**
 - `C:\Memories`
-
-**Tip:** Pick somewhere with plenty of storage space. Your memories could be many gigabytes!
 
 ### 3. Download Required Files
 
