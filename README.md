@@ -47,22 +47,7 @@ Look at [windows_guide.md](https://github.com/jennathor/download_snap_memories/b
    - Open the `html` folder inside the extracted data.
    - Locate the file named `memories_history.html` and download it. Keep it in your Downloads folder for now.
 
-
-### 2. Find Your Username
-
-**Windows:**
-- Press `Windows Key + R`
-- Type `cmd` and press Enter
-- Type `echo %USERNAME%` and press Enter
-- Write down the username shown (you'll need this exact spelling)
-
-**Mac:**
-- Press `Command (⌘) + Space`
-- Type `terminal` and press Enter
-- Type `whoami` and press Enter
-- Write down the username shown
-
-### 3. Choose Where to Store Your Memories
+### 2. Choose Where to Store Your Memories
 
 **Recommended location:**
 - **Windows:** `C:\Memories`
@@ -70,7 +55,7 @@ Look at [windows_guide.md](https://github.com/jennathor/download_snap_memories/b
 
 **Tip:** Pick somewhere with plenty of storage space. Your memories could be many gigabytes!
 
-### 4. Download Required Files
+### 3. Download Required Files
 
 Before starting, download these files:
 1. `memories_download.py` (the main download script)
@@ -114,6 +99,7 @@ Keep them in your Downloads folder for now.
 - **memories_verify_recover.py** - Checks that all files downloaded correctly, retries any failures, and can remove duplicate files
 
 Both scripts create detailed logs in the `_logs` folder so you can track what happened.
+
 
 
 
