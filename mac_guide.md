@@ -6,13 +6,11 @@ Download and organize all your Snapchat memories with this step-by-step guide. N
 
 ## Quick Start Checklist
 
-Estimated total time: **30-45 minutes** (plus download time)
+Estimated total time: **5-10 minutes** (setup) + **varies** (download time)
 
-- [ ] Install Python (10 min)
-- [ ] Install FFmpeg (10 min)  
-- [ ] Install Python packages (2 min)
-- [ ] Set up folders (5 min)
-- [ ] Edit paths in scripts (5 min)
+- [ ] Run the setup script (5-10 min - installs everything automatically!)
+- [ ] Set up folders (2 min)
+- [ ] Edit paths in scripts (3 min)
 - [ ] Run the download script (varies - could be hours)
 - [ ] Run the verification script (optional)
 
@@ -36,83 +34,52 @@ Estimated total time: **30-45 minutes** (plus download time)
 
 ### 3. Download Required Files
 
-Before starting, download these files:
-1. `memories_download.py` (the main download script)
-2. `memories_verify_recover.py` (checks your downloads)
-3. Your Snapchat `memories_history.html` file (from Snapchat's data export)
+Before starting, download these files from the GitHub repository:
+1. `setup_mac.sh` (automatic installer - NEW!)
+2. `memories_download.py` (the main download script)
+3. `memories_verify_recover.py` (checks your downloads)
+4. Your Snapchat `memories_history.html` file (from Snapchat's data export)
 
 Keep them in your Downloads folder for now.
 
 ---
----
 
 ## macOS SETUP GUIDE
 
-### Step 1: Install Python
+### Step 1: Run the Automatic Setup Script
 
-1. **Check if you already have Python:**
+1. **Open Terminal:**
    - Press `Command (⌘) + Space`
    - Type `terminal` and press Enter
-   - Type `python3 --version` and press Enter
-   - If you see "Python 3.8" or higher, skip to Step 2!
-   - If not, continue below
-
-2. **Install Homebrew (makes installing things easy):**
-   - In Terminal, paste this entire line:
-   ```
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   - Go to to your Downloads folder:
+   ```bash
+      cd ~/Downloads
    ```
    - Press Enter
-   - Enter your Mac password (you won't see it typed - that's normal)
-   - Wait for it to finish
+   - Make the setup script executable:
+   ```bash
+      chmod +x setup_mac.sh
+   ```
+   - Press Enter
+   - Run the setup script:
+   ```bash
+      ./setup_mac.sh
+   ```
+   - Press Enter
+   - You may be prompted for your password (you won't see it typed - that's normal)
+   - The script will automatically install:
+     - Homebrew (if needed)
+     - Python (if needed)
+     - FFmpeg
+     - All required Python packages
+   - This takes 5-10 min
+   - When you see "SUCCESS! All dependencies installed!" you're ready to continue
 
-3. **Install Python:**
-   - Type `brew install python` and press Enter
-   - Wait for it to finish
-
-4. **Test it worked:**
-   - Type `python3 --version` and press Enter
-   - You should see: `Python 3.12.x` (or similar)
-   - If you see an error: Restart your Mac and try again
+**What just happened?** The script installed all the software needed to run the downloader. You don't need to do anything else!
 
 ---
 
-### Step 2: Install FFmpeg
-
-1. **Install FFmpeg:**
-   - In Terminal, type:
-   ```
-   brew install ffmpeg
-   ```
-   - Press Enter, and wait (this takes 5-10 min)
-
-2. **Test it worked:**
-   - Type `ffmpeg -version` and press Enter
-   - You should see version information
-   - If you see an error: Run `brew install ffmpeg` again
-
----
-
-### Step 3: Install Python Packages
-
-1. **Open Terminal** (if not already open):
-   - Press `Command (⌘) + Space`
-   - Type `terminal` and press Enter
-
-2. **Install the packages:**
-   - Copy and paste this command:
-   ```
-   pip3 install aiohttp aiofiles tqdm Pillow
-   ```
-   - Press Enter, and wait for it to finish (30 sec - 2 min)
-
-3. **Test it worked:**
-   - Type `pip3 list` and press Enter
-   - You should see `aiohttp`, `aiofiles`, `tqdm`, and `Pillow` in the list
-
----
-
-### Step 4: Set Up Folders and Files
+### Step 2: Set Up Folders and Files
 
 1. **Create your Memories folder:**
    - Open Finder
@@ -129,6 +96,8 @@ Keep them in your Downloads folder for now.
      - `memories_history.html`
 
 **Tip:** All three files should now be in your Memories folder
+
+---
 
 ---
 
