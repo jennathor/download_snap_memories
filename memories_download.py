@@ -5,6 +5,7 @@ Downloads all images and videos from HTML export with built-in error handling,
 ZIP processing, and comprehensive logging.
 """
 
+from pathlib import Path
 
 # ******* UPDATE TO YOUR SPECIFIC FILE LOCATION **********
 # where you would like to save snap memories
@@ -46,7 +47,6 @@ SUMMARY_TXT = LOG_DIR / "download_summary.txt"
 # IMPORTS/PACKAGES
 # ============================================================
 import asyncio, aiohttp, aiofiles, csv, os, re, subprocess, shutil
-from pathlib import Path
 from datetime import datetime, timezone
 from tqdm.asyncio import tqdm
 from collections import defaultdict
@@ -491,3 +491,4 @@ async def main():
 if __name__ == "__main__":
 
     asyncio.run(main())
+
