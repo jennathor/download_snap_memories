@@ -1,4 +1,4 @@
-# Snapchat Memories Downloader - MAC OS Setup Guide
+# Snapchat Memories Downloader - macOS Setup Guide
 
 Download and organize all your Snapchat memories with this step-by-step guide. No coding experience needed!
 
