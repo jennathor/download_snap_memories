@@ -1,25 +1,50 @@
-# Snapchat Memories Downloader - Complete Setup Guide FOR WINDOWS
+# Snapchat Memories Downloader - WINDOWS Setup Guide
 
-A comprehensive guide for downloading and organizing your Snapchat memories with zero coding experience required.
-
----
-
-## What You'll Need
-
-These scripts download your Snapchat memories from an HTML file. Here's what they require:
-
-### Dependencies (Software/Tools)
-1. **Python 3.8 or higher** - The programming language that runs the scripts
-2. **FFmpeg** - A tool for processing videos and images with overlays (Ensures all text bars, stickers, etc. stay on your images)
-3. **Python packages** (libraries that add functionality):
-   - `aiohttp` - For downloading files from the internet
-   - `aiofiles` - For saving files efficiently
-   - `tqdm` - For showing progress bars
-   - `Pillow` (PIL) - For checking image integrity
-   - `asyncio`, `csv`, `pathlib`, `zipfile` - Built into Python (no installation needed)
+Download and organize all your Snapchat memories with this step-by-step guide. No coding experience needed!
 
 ---
 
+## Quick Start Checklist
+
+Estimated total time: **30-45 minutes** (plus download time)
+
+- [ ] Install Python (10 min)
+- [ ] Install FFmpeg (10 min)  
+- [ ] Install Python packages (2 min)
+- [ ] Set up folders (5 min)
+- [ ] Edit paths in scripts (5 min)
+- [ ] Run the download script (varies - could be hours)
+- [ ] Run the verification script (optional)
+
+---
+
+## Before You Start
+
+### 1. Find Your Username
+
+- Press `Windows Key + R`
+- Type `cmd` and press Enter
+- Type `echo %USERNAME%` and press Enter
+- Write down the username shown (you'll need this exact spelling)
+
+### 2. Choose Where to Store Your Memories
+
+**Recommended location:**
+- `C:\Memories`
+
+**Tip:** Pick somewhere with plenty of storage space. Your memories could be many gigabytes!
+
+### 3. Download Required Files
+
+Before starting, download these files:
+1. `memories_download.py` (the main download script)
+2. `memories_verify_recover.py` (checks your downloads)
+3. Your Snapchat `memories_history.html` file (from Snapchat's data export)
+
+Keep them in your Downloads folder for now.
+
+---
+---
 
 ## WINDOWS SETUP GUIDE
 
@@ -27,23 +52,22 @@ These scripts download your Snapchat memories from an HTML file. Here's what the
 
 1. **Download Python:**
    - Go to: https://www.python.org/downloads/
-   - Click the yellow "Download Python 3.12.x" button (or whatever the latest version is)
-   - Save the installer file
+   - Click the yellow "Download Python" button
+   - Save the file
 
 2. **Install Python:**
-   - Double-click the downloaded installer
-   - **CRITICAL:** Check the box that says "Add Python to PATH" at the bottom
+   - Double-click the downloaded file
+   - **IMPORTANT:** Check the box "Add Python to PATH"
    - Click "Install Now"
-   - Wait for installation to complete
+   - Wait for it to finish
    - Click "Close"
 
-3. **Verify Python is installed:**
+3. **Test it worked:**
    - Press `Windows Key + R`
-   - Type `cmd` and press Enter (this opens Command Prompt)
-   - Type: `python --version`
-   - Press Enter
-   - You should see something like "Python 3.12.0"
-   - If you see an error, restart your computer and try again
+   - Type `cmd` and press Enter
+   - Type `python --version` and press Enter
+   - You should see: `Python 3.12.x` (or similar)
+   - If you see an error: Restart your computer and try again
 
 ---
 
@@ -51,40 +75,39 @@ These scripts download your Snapchat memories from an HTML file. Here's what the
 
 1. **Download FFmpeg:**
    - Go to: https://www.gyan.dev/ffmpeg/builds/
-   - Click on "ffmpeg-release-essentials.zip" (under "Release builds")
-   - Save the ZIP file to your Downloads folder
+   - Click "ffmpeg-release-essentials.zip"
+   - Save to your Downloads folder
 
-2. **Extract FFmpeg:**
-   - Go to your Downloads folder
-   - Right-click the `ffmpeg-release-essentials.zip` file
-   - Click "Extract All..."
-   - Click "Extract"
-   - You'll now have a folder like `ffmpeg-6.0-essentials_build`
+2. **Unzip FFmpeg:**
+   - Go to Downloads
+   - Right-click `ffmpeg-release-essentials.zip`
+   - Click "Extract All..." → "Extract"
+   - You'll see a new folder like `ffmpeg-6.0-essentials_build`
 
-3. **Add FFmpeg to PATH:**
+3. **Add FFmpeg to your computer:**
    - Open the extracted folder
-   - Open the `bin` folder inside it
-   - Copy the folder path from the address bar (e.g., `C:\Users\YourName\Downloads\ffmpeg-6.0-essentials_build\bin`)
+   - Open the `bin` folder inside
+   - Click in the address bar at the top
+   - Copy the full path (example: `C:\Users\YourName\Downloads\ffmpeg-6.0-essentials_build\bin`)
    
-   **Now add it to your system PATH:**
-   - Press `Windows Key`
-   - Type "environment variables"
+   **Now add it to PATH:**
+   - Press the `Windows Key`
+   - Type `environment variables`
    - Click "Edit the system environment variables"
-   - Click "Environment Variables..." button at the bottom
-   - In the "System variables" section (bottom half), find and click "Path"
-   - Click "Edit..."
+   - Click "Environment Variables..." button
+   - Find "Path" in the bottom section (System variables)
+   - Click "Path" → Click "Edit..."
    - Click "New"
-   - Paste the FFmpeg bin folder path you copied
+   - Paste the path you copied
    - Click "OK" on all windows
-   - **Restart your computer** (important!)
+   - **Restart your computer**
 
-4. **Verify FFmpeg is installed:**
+4. **Test it worked:**
    - Press `Windows Key + R`
    - Type `cmd` and press Enter
-   - Type: `ffmpeg -version`
-   - Press Enter
+   - Type `ffmpeg -version` and press Enter
    - You should see version information
-   - If you see an error, double-check the PATH steps above
+   - If you see an error: Double-check the PATH steps above
 
 ---
 
@@ -94,155 +117,159 @@ These scripts download your Snapchat memories from an HTML file. Here's what the
    - Press `Windows Key + R`
    - Type `cmd` and press Enter
 
-2. **Install packages:**
-   - Type the command below and press Enter:
-   ```bash
+2. **Install the packages:**
+   - Copy and paste this command:
+   ```
    pip install aiohttp aiofiles tqdm Pillow
    ```
+   - Press Enter, and wait for it to finish (30 sec - 2 min)
 
-3. **Verify installation:**
-   - Type: `pip list`
-   - Press Enter
+3. **Test it worked:**
+   - Type `pip list` and press Enter
    - You should see `aiohttp`, `aiofiles`, `tqdm`, and `Pillow` in the list
 
 ---
 
-### Step 4: Set Up Your Files and Folders
+### Step 4: Set Up Folders and Files
 
-1. **Download the Python scripts:**
-   - Download both `memories_download.py` and `memories_verify_recover.py` files from wherever you obtained them (GitHub, email, etc.)
-   - Save them to a location you'll remember (e.g., your Downloads folder, 'C:\Users\Username\Downloads')
-
-2. **Create the main Memories folder:**
+1. **Create your Memories folder:**
    - Open File Explorer
-   - Navigate to a location where you want to store your memories
-   - **Recommended:** `C:\Memories` (directly on C: drive for simplicity)
-   - **Alternative:** `C:\Users\YourName\Documents\Memories`
-   - Right-click in the empty space
-   - Click "New" → "Folder"
+   - Go to `C:\` (your C: drive)
+   - Right-click in empty space → "New" → "Folder"
    - Name it: `Memories`
+   - Final location: `C:\Memories`
 
-3. **Move the Python scripts:**
-   - Move both `memories_download.py` and `memories_verify_recover.py` into your new `Memories` folder
-   - They should now be at: `C:\Memories\memories_download.py` and `C:\Memories\memories_verify_recover.py`
+2. **Move your files:**
+   - Go to your Downloads folder
+   - Move these 3 files into `C:\Memories`:
+     - `memories_download.py`
+     - `memories_verify_recover.py`
+     - `memories_history.html`
 
-4. **Download your Snapchat memories HTML file:**
-   - Follow Snapchat's instructions to export your memories
-   - You'll receive a file called `memories_history.html` (it may be within several zipped folders - extract all layers until you find the HTML file)
-   - Move `memories_history.html` into your `Memories` folder
-   - It should now be at: `C:\Memories\memories_history.html`
-
----
-
-### Step 5: Configure the Scripts
-
-You need to update file paths in both scripts to match YOUR computer.
-
-**For `memories_download.py`:**
-
-1. Right-click the file and select "Edit with Notepad" (or "Open with" → "Notepad")
-2. Find this line near the top (around line 11):
-```python
-BASE_DIR = Path("C:/Users/jenna/Documents/Memories")
-```
-
-3. **Change it to match where YOU created your Memories folder:**
-```python
-BASE_DIR = Path("C:/Memories")  # If you created it directly on C: drive
-```
-
-**OR**
-```python
-BASE_DIR = Path("C:/Users/YourUsername/Documents/Memories")  # If you created it in Documents
-```
-
-**Replace `YourUsername` with your actual Windows username.**
-
-To find your username:
-- Press `Windows Key + R`
-- Type `cmd` and press Enter
-- Type `echo %USERNAME%`
-- Press Enter
-- This shows your username - use this EXACT spelling
-
-4. **Only if FFmpeg is not in your PATH** (you'll know if you got errors in Step 2), find this line (around line 17):
-```python
-FFMPEG_PATH = "ffmpeg"
-```
-
-Change it to the full path:
-```python
-FFMPEG_PATH = "C:/Users/YourUsername/Downloads/ffmpeg-6.0-essentials_build/bin/ffmpeg.exe"
-```
-
-5. Save the file (Ctrl+S) and close Notepad
-
-**For `memories_verify_recover.py`:**
-
-1. Right-click the file and select "Edit with Notepad"
-2. Find this line near the top (around line 9):
-```python
-BASE_DIR = Path("C:/Users/jenna/Documents/Memories")  # "C:/Users/YourUsername/Documents/Memories"
-```
-
-3. **Change it to EXACTLY match what you used in `memories_download.py`:**
-```python
-BASE_DIR = Path("C:/Memories")  # Must match memories_download.py
-```
-
-**OR**
-```python
-BASE_DIR = Path("C:/Users/YourUsername/Documents/Memories")  # Must match memories_download.py
-```
-
-4. **Only if FFmpeg is not in your PATH**, find this line (around line 15):
-```python
-FFMPEG_PATH = "ffmpeg"
-```
-
-Change it to the same path you used in the first script:
-```python
-FFMPEG_PATH = "C:/Users/YourUsername/Downloads/ffmpeg-6.0-essentials_build/bin/ffmpeg.exe"
-```
-
-5. Save the file (Ctrl+S) and close Notepad
-
-**Important:** Both scripts MUST use the same `BASE_DIR` and `FFMPEG_PATH` values!
+**Tip:** All three files should now be at `C:\Memories\filename`
 
 ---
 
-### Step 6: Run the Scripts
+### Step 5: Edit the Scripts
+
+You need to tell the scripts where to find your files. You'll edit **2 lines in 2 files**.
+
+#### Edit Script #1: memories_download.py
+
+1. **Open the file:**
+   - Go to `C:\Memories`
+   - Right-click `memories_download.py`
+   - Click "Edit with Notepad"
+
+2. **Find and change these lines:**
+
+| Line to Find (about line 10)| Change It To |
+|-------------|--------------|
+| `BASE_DIR = Path("C:/Users/jenna/Documents/Memories")` | `BASE_DIR = Path("C:/Memories")` |
+| `FFMPEG_PATH = "ffmpeg"` | Leave as-is |
+
+**Only change FFMPEG_PATH if** you got errors in Step 2. Change it to:
+```python
+FFMPEG_PATH = "C:/Users/YourUsername/Downloads/ffmpeg-6.0-essentials_build/bin/ffmpeg.exe"
+```
+(Replace `YourUsername` with the username you wrote down earlier)
+
+3. **Save and close:**
+   - Press `Ctrl + S`
+   - Close Notepad
+
+#### Edit Script #2: memories_verify_recover.py
+
+1. **Open the file:**
+   - Right-click `memories_verify_recover.py`
+   - Click "Edit with Notepad"
+
+2. **Make the EXACT SAME changes:**
+
+| Line to Find (about line 9)| Change It To |
+|-------------|--------------|
+| `BASE_DIR = Path("C:/Users/jenna/Documents/Memories")` | `BASE_DIR = Path("C:/Memories")` |
+| `FFMPEG_PATH = "ffmpeg"` | Leave as-is (or use same FFmpeg path as Script #1) |
+
+3. **Save and close:**
+   - Press `Ctrl + S`
+   - Close Notepad
+
+**Important:** Both scripts must use identical paths!
+
+---
+
+### Step 6: Download Your Memories!
 
 1. **Open Command Prompt in your Memories folder:**
-   - Type: `cd C:\Memories` (if Memories is directly on C: drive)
-   - OR type: `cd C:\Users\YourUsername\Documents\Memories` (if in Documents)
-   - Press Enter
+   - Press `Windows Key + R`
+   - Type `cmd` and press Enter
+   - Type `cd C:\Memories` and press Enter
 
-2. **Run the download script:**
-   ```bash
+2. **Start the download:**
+   ```
    python memories_download.py
    ```
    - Press Enter
-   - The script will start downloading your memories
-   - You'll see progress bars
-   - This may take several hours depending on how many memories you have
+   - You'll see progress bars showing downloads
+   - This could take several hours depending on how many memories you have
+   - **Tip:** You can leave your computer on (make sure it doesn't fall asleep) and come back later
 
-3. **After downloading completes, run the verification script:**
-   - This step may not be necessary if you had success for all of your downloads.
-
-   ```bash
+3. **After downloads finish, verify everything worked:**
+ (Optional step, if all items were successfully downloaded, you're done!)
+   ```
    python memories_verify_recover.py
    ```
    - Press Enter
-   - This checks if everything downloaded correctly
-   - It will retry any failed downloads
-   - It may ask if you want to delete duplicates - type `yes` or `no`
-
-4. **Your memories will be organized in:**
-   Years folders, partial saves, and download logs
-   - `C:\Memories\2024\` (if Memories is directly on C: drive)
-   - OR `C:\Users\YourUsername\Documents\Memories\2024\` (if in Documents)
-   - `C:\Users\YourUsername\Documents\Memories\_logs\` (download logs)
-   - `C:\Users\YourUsername\Documents\Memories\partial_saves\` (any files that couldn't have overlays merged)
+   - This checks all files and retries any failures
+   - If asked about deleting duplicates, type `yes` or `no`
 
 ---
+
+### You're Done!
+
+**Your memories are saved in:**
+- `C:\Memories\2025\` (organized by year)
+- `C:\Memories\2024\`
+- `C:\Memories\2023\`
+- etc.
+
+**Other folders created:**
+- `C:\Memories\_logs\` - Download logs and tracking
+- `C:\Memories\partial_saves\` - Files that couldn't have overlays merged
+
+---
+---
+
+## Troubleshooting
+
+### "Command not found" errors
+- Make sure you completed all installation steps
+- Restart your computer
+
+### "Permission denied" errors
+- Right-click Command Prompt and choose "Run as administrator"
+
+### Downloads are failing
+- Check your internet connection
+- Make sure `memories_history.html` is in the correct folder
+- Run `memories_verify_recover.py` to retry failed downloads
+- Made sure you Snapchat data has not expired (as of 12/17/25: data requests expire 3 days after receiving them)
+
+### FFmpeg errors
+- Double-check that FFmpeg is installed (`ffmpeg -version` in Terminal/Command Prompt)
+- Make sure the FFMPEG_PATH in both scripts matches your installation
+
+### Still stuck?
+- Check that both scripts have the exact same BASE_DIR and FFMPEG_PATH values
+- Make sure all three files (`memories_download.py`, `memories_verify_recover.py`, `memories_history.html`) are in your Memories folder
+- Verify you replaced "YourUsername" with your actual username
+
+---
+
+## What These Scripts Do
+
+- **memories_download.py** - Downloads all your Snapchat memories from the HTML file, organizes them by year, and merges any overlays (text, stickers, etc.)
+- **memories_verify_recover.py** - Checks that all files downloaded correctly, retries any failures, and can remove duplicate files
+
+Both scripts create detailed logs in the `_logs` folder so you can track what happened.
