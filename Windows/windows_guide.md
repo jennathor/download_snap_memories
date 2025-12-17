@@ -6,14 +6,13 @@ Download and organize all your Snapchat memories with this step-by-step guide. N
 
 ## Quick Start Checklist
 
-Estimated total time: **30-45 minutes** (plus download time)
+Estimated total time: **15–25 minutes** (plus Snapchat download time)
 
-- [ ] Install Python (10 min)
-- [ ] Install FFmpeg (10 min)  
-- [ ] Install Python packages (2 min)
-- [ ] Set up folders (5 min)
-- [ ] Edit paths in scripts (5 min)
-- [ ] Run the download script (varies - could be hours)
+- [ ] Install Python & FFmpeg (Fast Install or Manual)
+- [ ] Install Python packages
+- [ ] Set up folders
+- [ ] Edit output path in scripts
+- [ ] Run the download script (may take hours)
 - [ ] Run the verification script (optional)
 
 ---
@@ -36,79 +35,93 @@ Estimated total time: **30-45 minutes** (plus download time)
 
 ### 3. Download Required Files
 
-Before starting, download these files:
-1. `memories_download.py` (the main download script)
-2. `memories_verify_recover.py` (checks your downloads)
-3. Your Snapchat `memories_history.html` file (from Snapchat's data export)
+Download the following files and keep them in your **Downloads** folder for now:
 
-Keep them in your Downloads folder for now.
+1. `memories_download.py`
+2. `memories_verify_recover.py`
+3. Your Snapchat export file: `memories_history.html`
 
 ---
 ---
 
 ## WINDOWS SETUP GUIDE
 
-### Step 1: Install Python
+## Option A (Recommended): FAST INSTALL using `winget`
 
-1. **Download Python:**
-   - Go to: https://www.python.org/downloads/
-   - Click the yellow "Download Python" button
-   - Save the file
+### Step 1A: Install Python and FFmpeg Automatically
 
-2. **Install Python:**
-   - Double-click the downloaded file
-   - **IMPORTANT:** Check the box "Add Python to PATH"
-   - Click "Install Now"
-   - Wait for it to finish
-   - Click "Close"
-
-3. **Test it worked:**
+1. Open **Command Prompt**
    - Press `Windows Key + R`
-   - Type `cmd` and press Enter
-   - Type `python --version` and press Enter
-   - You should see: `Python 3.12.x` (or similar)
-   - If you see an error: Restart your computer and try again
+   - Type `cmd` → press Enter
+   - Ensure winget exists, type `winget --version` and press Enter
+
+2. Run these commands **one at a time**:
+   ```
+   winget install Python.Python.3.12
+   winget install Gyan.FFmpeg
+   ```
+
+3. **Restart your computer** (important!)
+
+### Step 1B: Verify Installations
+
+Open Command Prompt again and run:
+```
+python --version
+ffmpeg -version
+```
+You should see version information for both.
+
+If both work, **skip to Step 3: Install Python Packages**  
+If `winget` is not available, use **Option B** below.
+
 
 ---
 
-### Step 2: Install FFmpeg
+## Option B (Fallback): MANUAL INSTALL
 
-1. **Download FFmpeg:**
-   - Go to: https://www.gyan.dev/ffmpeg/builds/
-   - Click "ffmpeg-release-essentials.zip"
-   - Save to your Downloads folder
+Use this only if the Fast Install did not work.
 
-2. **Unzip FFmpeg:**
-   - Go to Downloads
-   - Right-click `ffmpeg-release-essentials.zip`
-   - Click "Extract All..." → "Extract"
-   - You'll see a new folder like `ffmpeg-6.0-essentials_build`
+### Step 1: Install Python (Manual)
 
-3. **Add FFmpeg to your computer:**
-   - Open the extracted folder
-   - Open the `bin` folder inside
-   - Click in the address bar at the top
-   - Copy the full path (example: `C:\Users\YourName\Downloads\ffmpeg-6.0-essentials_build\bin`)
-   
-   **Now add it to PATH:**
-   - Press the `Windows Key`
-   - Type `environment variables`
-   - Click "Edit the system environment variables"
-   - Click "Environment Variables..." button
-   - Find "Path" in the bottom section (System variables)
-   - Click "Path" → Click "Edit..."
-   - Click "New"
-   - Paste the path you copied
-   - Click "OK" on all windows
-   - **Restart your computer**
+1. Go to: https://www.python.org/downloads/
+2. Click **Download Python**
+3. Double-click the installer
+4. **IMPORTANT:** Check **“Add Python to PATH”**
+5. Click **Install Now**
+6. Finish and close
 
-4. **Test it worked:**
-   - Press `Windows Key + R`
-   - Type `cmd` and press Enter
-   - Type `ffmpeg -version` and press Enter
-   - You should see version information
-   - If you see an error: Double-check the PATH steps above
+Verify it exists:
+```
+python --version
+```
 
+### Step 2: Install FFmpeg (Manual)
+
+1. Go to: https://www.gyan.dev/ffmpeg/builds/
+2. Download **ffmpeg-release-essentials.zip**
+3. Extract the ZIP file
+4. Open the extracted folder → open `bin`
+5. Copy the full path (example):
+   ```
+   C:\Users\YourUsername\Downloads\ffmpeg-6.0-essentials_build\bin
+   ```
+
+### Add FFmpeg to PATH
+
+1. Press `Windows Key`
+2. Search **environment variables**
+3. Click **Edit the system environment variables**
+4. Click **Environment Variables**
+5. Under **System variables**, select `Path` → **Edit**
+6. Click **New** → paste the FFmpeg `bin` path
+7. Click **OK** on all windows
+8. **Restart your computer**
+
+Verify it exists:
+```
+ffmpeg -version
+```
 ---
 
 ### Step 3: Install Python Packages
@@ -124,7 +137,7 @@ Keep them in your Downloads folder for now.
    ```
    - Press Enter, and wait for it to finish (30 sec - 2 min)
 
-3. **Test it worked:**
+3. **Verify it worked:**
    - Type `pip list` and press Enter
    - You should see `aiohttp`, `aiofiles`, `tqdm`, and `Pillow` in the list
 
@@ -134,7 +147,7 @@ Keep them in your Downloads folder for now.
 
 1. **Create your Memories folder:**
    - Open File Explorer
-   - Go to `C:\` (your C: drive)
+   - Go to `C:\`
    - Right-click in empty space → "New" → "Folder"
    - Name it: `Memories`
    - Final location: `C:\Memories`
@@ -146,13 +159,11 @@ Keep them in your Downloads folder for now.
      - `memories_verify_recover.py`
      - `memories_history.html`
 
-**Tip:** All three files should now be at `C:\Memories\filename`
-
 ---
 
 ### Step 5: Edit the Scripts
 
-You need to tell the scripts where to find your files. You'll edit **2 lines in 2 files**.
+You'll edit **1 line in 2 files** to show where to save your memories
 
 #### Edit Script #1: memories_download.py
 
@@ -161,18 +172,11 @@ You need to tell the scripts where to find your files. You'll edit **2 lines in 
    - Right-click `memories_download.py`
    - Click "Edit with Notepad"
 
-2. **Find and change these lines:**
+2. **Find and change this line:**
 
 | Line to Find (about line 10)| Change It To |
 |-------------|--------------|
 | `BASE_DIR = Path.home() / "Memories"` | `BASE_DIR = Path("C:/Memories")` |
-| `FFMPEG_PATH = "ffmpeg"` | Leave as-is |
-
-**Only change FFMPEG_PATH if** you got errors in Step 2. Change it to:
-```python
-FFMPEG_PATH = "C:/Users/YourUsername/Downloads/ffmpeg-6.0-essentials_build/bin/ffmpeg.exe"
-```
-(Replace `YourUsername` with the username you wrote down earlier)
 
 3. **Save and close:**
    - Press `Ctrl + S`
@@ -184,12 +188,11 @@ FFMPEG_PATH = "C:/Users/YourUsername/Downloads/ffmpeg-6.0-essentials_build/bin/f
    - Right-click `memories_verify_recover.py`
    - Click "Edit with Notepad"
 
-2. **Make the EXACT SAME changes:**
+2. **Make the EXACT SAME change:**
 
 | Line to Find (about line 9)| Change It To |
 |-------------|--------------|
 | `BASE_DIR = Path.home() / "Memories"` | `BASE_DIR = Path("C:/Memories")` |
-| `FFMPEG_PATH = "ffmpeg"` | Leave as-is (or use same FFmpeg path as Script #1) |
 
 3. **Save and close:**
    - Press `Ctrl + S`
@@ -215,8 +218,7 @@ FFMPEG_PATH = "C:/Users/YourUsername/Downloads/ffmpeg-6.0-essentials_build/bin/f
    - This could take several hours depending on how many memories you have
    - **Tip:** You can leave your computer on (make sure it doesn't fall asleep) and come back later
 
-3. **After downloads finish, verify everything worked:**
- (Optional step, if all items were successfully downloaded, you're done!)
+3. **Optional (if some memories failed to download): Verify & Retry Failed Downloads**
    ```
    python memories_verify_recover.py
    ```
