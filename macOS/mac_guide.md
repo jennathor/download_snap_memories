@@ -17,21 +17,12 @@ Estimated total time: **5-10 minutes** (setup) + **varies** (download time)
 
 ## Before You Start
 
-### 1. Find Your Username
+### 1. Choose Where to Store Your Memories
 
-- Press `Command (⌘) + Space`
-- Type `terminal` and press Enter
-- Type `whoami` and press Enter
-- Write down the username shown
-
-### 2. Choose Where to Store Your Memories
-
-**Recommended location:**
+**Recommended location (this guide assumes this is your storage location):**
 - Your home folder `/Users/YourUsername/Memories`
 
-**Tip:** Pick somewhere with plenty of storage space. Your memories could be many gigabytes!
-
-### 3. Download Required Files
+### 2. Download Required Files
 
 Before starting, download these files from the GitHub repository:
 1. `setup_mac.sh` (automatic installer, in the 'macOS' folder)
