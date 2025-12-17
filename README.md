@@ -2,6 +2,10 @@
 
 Download and organize all your Snapchat memories with this step-by-step guide. No coding experience needed!
 
+Look at 'windows_guide.md' for a Windows specific user guide, and 'mac_guide.md' for a Mac specific guide.
+
+---
+---
 ---
 
 ## Quick Start Checklist
@@ -462,3 +466,4 @@ You need to tell the scripts where to find your files. You'll edit **2 lines in 
 - **memories_verify_recover.py** - Checks that all files downloaded correctly, retries any failures, and can remove duplicate files
 
 Both scripts create detailed logs in the `_logs` folder so you can track what happened.
+
