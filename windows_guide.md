@@ -165,7 +165,7 @@ You need to tell the scripts where to find your files. You'll edit **2 lines in 
 
 | Line to Find (about line 10)| Change It To |
 |-------------|--------------|
-| `BASE_DIR = Path("C:/Users/jenna/Documents/Memories")` | `BASE_DIR = Path("C:/Memories")` |
+| `BASE_DIR = Path.home() / "Memories"` | `BASE_DIR = Path("C:/Memories")` |
 | `FFMPEG_PATH = "ffmpeg"` | Leave as-is |
 
 **Only change FFMPEG_PATH if** you got errors in Step 2. Change it to:
@@ -188,7 +188,7 @@ FFMPEG_PATH = "C:/Users/YourUsername/Downloads/ffmpeg-6.0-essentials_build/bin/f
 
 | Line to Find (about line 9)| Change It To |
 |-------------|--------------|
-| `BASE_DIR = Path("C:/Users/jenna/Documents/Memories")` | `BASE_DIR = Path("C:/Memories")` |
+| `BASE_DIR = Path.home() / "Memories"` | `BASE_DIR = Path("C:/Memories")` |
 | `FFMPEG_PATH = "ffmpeg"` | Leave as-is (or use same FFmpeg path as Script #1) |
 
 3. **Save and close:**
@@ -273,3 +273,4 @@ FFMPEG_PATH = "C:/Users/YourUsername/Downloads/ffmpeg-6.0-essentials_build/bin/f
 - **memories_verify_recover.py** - Checks that all files downloaded correctly, retries any failures, and can remove duplicate files
 
 Both scripts create detailed logs in the `_logs` folder so you can track what happened.
+
