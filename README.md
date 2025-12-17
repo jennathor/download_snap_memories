@@ -23,7 +23,35 @@ Estimated total time: **30-45 minutes** (plus download time)
 
 ## Before You Start
 
-### 1. Find Your Username
+### 1. Download your Snapchat `memories_history.html` file (from Snapchat's data export)
+1. Log in to Snapchat's Account Portal
+- Open your browser and go to **https://accounts.snapchat.com/v2/download-my-data**
+- Log in with your Snapchat credentials.
+
+2. Select Data Types
+- Scroll down and make sure the checkbox for **"Memories and Other Media"** is selected.
+
+3. Request Data
+- Follow the remaining steps on the page (such as selecting a date range and confirming your email) until you can click the **Submit Request / Export** button.
+- Snapchat will notify you that your request is being processed.
+
+4. Wait for the Email
+- Snapchat will email you a link to download your data.
+   - This can take anywhere from a few minutes to several hours or even days, depending on the size of your data.
+
+5. Download the Data Zip
+- When you receive the email, click the link to download the ZIP file containing your data.
+
+6. Extract the ZIP File
+- Extract the ZIP file.
+   - Inside, you will find a folder named something like `mydata ~ [date]`.
+
+7. Locate the HTML File
+- Open the `html` folder inside the extracted data.
+- Locate the file named `memories_history.html` and download it. Keep it in your Downloads folder for now.
+
+
+### 2. Find Your Username
 
 **Windows:**
 - Press `Windows Key + R`
@@ -37,7 +65,7 @@ Estimated total time: **30-45 minutes** (plus download time)
 - Type `whoami` and press Enter
 - Write down the username shown
 
-### 2. Choose Where to Store Your Memories
+### 3. Choose Where to Store Your Memories
 
 **Recommended location:**
 - **Windows:** `C:\Memories`
@@ -45,12 +73,11 @@ Estimated total time: **30-45 minutes** (plus download time)
 
 **Tip:** Pick somewhere with plenty of storage space. Your memories could be many gigabytes!
 
-### 3. Download Required Files
+### 4. Download Required Files
 
 Before starting, download these files:
 1. `memories_download.py` (the main download script)
 2. `memories_verify_recover.py` (checks your downloads)
-3. Your Snapchat `memories_history.html` file (from Snapchat's data export)
 
 Keep them in your Downloads folder for now.
 

@@ -50,7 +50,7 @@ Keep them in your Downloads folder for now.
 1. **Open Terminal:**
    - Press `Command (⌘) + Space`
    - Type `terminal` and press Enter
-   - Go to to your Downloads folder:
+   - Go to your Downloads folder:
    ```bash
       cd ~/Downloads
    ```
