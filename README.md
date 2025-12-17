@@ -11,11 +11,8 @@ Look at [windows_guide.md](https://github.com/jennathor/download_snap_memories/b
 
 ## Quick Start Checklist
 
-Estimated total time: **30-45 minutes** (plus download time)
-
 - [ ] Install Python, FFmpeg, and Python packages (2 min)
 - [ ] Set up folders (5 min)
-- [ ] Edit paths in scripts - windows only (5 min)
 - [ ] Run the download script (varies - could be hours)
 - [ ] Run the verification script (optional, if some items didn't download)
 
@@ -117,6 +114,7 @@ Keep them in your Downloads folder for now.
 - **memories_verify_recover.py** - Checks that all files downloaded correctly, retries any failures, and can remove duplicate files
 
 Both scripts create detailed logs in the `_logs` folder so you can track what happened.
+
 
 
 
