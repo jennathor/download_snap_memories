@@ -7,7 +7,7 @@ Verifies downloads, retries failures, resolves duplicates, and generates final r
 
 # ******* MUST MATCH the BASE_DIR used in memories_download.py **********
 # where you would like to save snap memories
-BASE_DIR = Path("C:/Users/jenna/Documents/Memories")  # "C:/Users/YourUsername/Documents/Memories" or `C:\Memories`
+BASE_DIR = Path.home() / "Memories"  # WINDOWS: "C:/Users/YourUsername/Documents/Memories" or `C:\Memories`
 
 
 # Leave as is unless you have ffmpeg issues
@@ -732,4 +732,5 @@ async def main():
 
 if __name__ == "__main__":
     import re  # needed for unrecoverable report
+
     asyncio.run(main())
