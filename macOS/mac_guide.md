@@ -34,7 +34,7 @@ Estimated total time: **5-10 minutes** (setup) + **varies** (download time)
 ### 3. Download Required Files
 
 Before starting, download these files from the GitHub repository:
-1. `setup_mac.sh` (automatic installer)
+1. `setup_mac.sh` (automatic installer, in the 'macOS' folder)
 2. `memories_download.py` (the main download script)
 3. `memories_verify_recover.py` (checks your downloads)
 4. Your Snapchat `memories_history.html` file (from Snapchat's data export)
