@@ -8,7 +8,7 @@ ZIP processing, and comprehensive logging.
 
 # ******* UPDATE TO YOUR SPECIFIC FILE LOCATION **********
 # where you would like to save snap memories
-BASE_DIR = Path("C:/Users/jenna/Documents/Memories")  # "C:/Users/YourUsername/Documents/Memories", or `C:\Memories`
+BASE_DIR = Path.home() / "Memories"  # WINDOWS: "C:/Users/YourUsername/Documents/Memories", or `C:\Memories`
 
 
 # Leave as is unless you have ffmpeg issues
@@ -489,4 +489,5 @@ async def main():
     generate_summary(len(items), skipped, stats)
 
 if __name__ == "__main__":
+
     asyncio.run(main())
