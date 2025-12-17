@@ -4,6 +4,7 @@ Snapchat Memories Verification & Recovery Tool
 Verifies downloads, retries failures, resolves duplicates, and generates final report.
 """
 
+from pathlib import Path
 
 # ******* MUST MATCH the BASE_DIR used in memories_download.py **********
 # where you would like to save snap memories
@@ -45,7 +46,6 @@ MIN_FILE_SIZE = 1024  # bytes
 # IMPORTS/PACKAGES
 # ============================================================
 import asyncio, aiohttp, aiofiles, csv, os, subprocess, shutil
-from pathlib import Path
 from datetime import datetime, timezone
 from collections import defaultdict
 from tqdm.asyncio import tqdm
@@ -734,3 +734,4 @@ if __name__ == "__main__":
     import re  # needed for unrecoverable report
 
     asyncio.run(main())
+
