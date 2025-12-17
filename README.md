@@ -25,30 +25,30 @@ Estimated total time: **30-45 minutes** (plus download time)
 
 ### 1. Download your Snapchat `memories_history.html` file (from Snapchat's data export)
 1. Log in to Snapchat's Account Portal
-- Open your browser and go to **https://accounts.snapchat.com/v2/download-my-data**
-- Log in with your Snapchat credentials.
+   - Open your browser and go to **https://accounts.snapchat.com/v2/download-my-data**
+   - Log in with your Snapchat credentials.
 
 2. Select Data Types
-- Scroll down and make sure the checkbox for **"Memories and Other Media"** is selected.
+   - Scroll down and make sure the checkbox for **"Memories and Other Media"** is selected.
 
 3. Request Data
-- Follow the remaining steps on the page (such as selecting a date range and confirming your email) until you can click the **Submit Request / Export** button.
-- Snapchat will notify you that your request is being processed.
+   - Follow the remaining steps on the page (such as selecting a date range and confirming your email) until you can click the **Submit Request / Export** button.
+   - Snapchat will notify you that your request is being processed.
 
 4. Wait for the Email
-- Snapchat will email you a link to download your data.
+   - Snapchat will email you a link to download your data.
    - This can take anywhere from a few minutes to several hours or even days, depending on the size of your data.
 
 5. Download the Data Zip
-- When you receive the email, click the link to download the ZIP file containing your data.
+   - When you receive the email, click the link to download the ZIP file containing your data.
 
 6. Extract the ZIP File
-- Extract the ZIP file.
+   - Extract the ZIP file.
    - Inside, you will find a folder named something like `mydata ~ [date]`.
 
 7. Locate the HTML File
-- Open the `html` folder inside the extracted data.
-- Locate the file named `memories_history.html` and download it. Keep it in your Downloads folder for now.
+   - Open the `html` folder inside the extracted data.
+   - Locate the file named `memories_history.html` and download it. Keep it in your Downloads folder for now.
 
 
 ### 2. Find Your Username
@@ -117,6 +117,7 @@ Keep them in your Downloads folder for now.
 - **memories_verify_recover.py** - Checks that all files downloaded correctly, retries any failures, and can remove duplicate files
 
 Both scripts create detailed logs in the `_logs` folder so you can track what happened.
+
 
 
 
