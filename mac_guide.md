@@ -35,7 +35,7 @@ Estimated total time: **5-10 minutes** (setup) + **varies** (download time)
 ### 3. Download Required Files
 
 Before starting, download these files from the GitHub repository:
-1. `setup_mac.sh` (automatic installer - NEW!)
+1. `setup_mac.sh` (automatic installer)
 2. `memories_download.py` (the main download script)
 3. `memories_verify_recover.py` (checks your downloads)
 4. Your Snapchat `memories_history.html` file (from Snapchat's data export)
@@ -99,58 +99,7 @@ Keep them in your Downloads folder for now.
 
 ---
 
----
-
-### Step 5: Edit the Scripts
-
-You need to tell the scripts where to find your files. You'll edit **2 lines in 2 files**.
-
-#### Edit Script #1: memories_download.py
-
-1. **Open the file:**
-   - Go to your Memories folder
-   - Right-click `memories_download.py`
-   - Click "Open With" → "TextEdit"
-   - If it opens with formatting: Click "Format" menu → "Make Plain Text"
-
-2. **Find and change these lines:**
-
-| Line to Find (about line 10)| Change It To |
-|-------------|--------------|
-| `BASE_DIR = Path("C:/Users/jenna/Documents/Memories")` | `BASE_DIR = Path.home() / "Memories"` |
-| `FFMPEG_PATH = "ffmpeg"` | Leave as-is |
-
-**Only change FFMPEG_PATH if** you got errors in Step 2:
-- **For M1/M2/M3 Macs:** `FFMPEG_PATH = "/opt/homebrew/bin/ffmpeg"`
-- **For Intel Macs:** `FFMPEG_PATH = "/usr/local/bin/ffmpeg"`
-
-3. **Save and close:**
-   - Press `Command + S`
-   - Close TextEdit
-
-#### Edit Script #2: memories_verify_recover.py
-
-1. **Open the file:**
-   - Right-click `memories_verify_recover.py`
-   - Click "Open With" → "TextEdit"
-   - If it opens with formatting: Click "Format" menu → "Make Plain Text"
-
-2. **Make the EXACT SAME changes:**
-
-| Line to Find | Change It To |
-|-------------|--------------|
-| `BASE_DIR = Path("C:/Users/jenna/Documents/Memories")` | `BASE_DIR = Path.home() / "Memories"` |
-| `FFMPEG_PATH = "ffmpeg"` | Leave as-is (or use same FFmpeg path as Script #1) |
-
-3. **Save and close:**
-   - Press `Command + S`
-   - Close TextEdit
-
-**Important:** Both scripts must use identical paths!
-
----
-
-### Step 6: Download Your Memories!
+### Step 3: Download Your Memories!
 
 1. **Open Terminal in your Memories folder:**
    - Press `Command (⌘) + Space`
