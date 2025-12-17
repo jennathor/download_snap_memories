@@ -10,7 +10,6 @@ Estimated total time: **5-10 minutes** (setup) + **varies** (download time)
 
 - [ ] Run the setup script (5-10 min - installs everything automatically!)
 - [ ] Set up folders (2 min)
-- [ ] Edit paths in scripts (3 min)
 - [ ] Run the download script (varies - could be hours)
 - [ ] Run the verification script (optional)
 
