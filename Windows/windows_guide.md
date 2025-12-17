@@ -19,7 +19,7 @@ Estimated total time: **15–25 minutes** (plus Snapchat download time)
 
 ## Before You Start
 
-### 1. Choose Where to Store Your Memories
+### 1. Choose Where to Store Your Memories (Step 4)
 
 **Recommended location (this guide assumes this will be your storage location):**
 - `C:\Memories`
