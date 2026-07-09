@@ -1,8 +1,8 @@
 # Snapchat Memories Downloader - Setup Guide
 
-Download and organize all your Snapchat memories with this step-by-step guide. No coding experience needed!
+Download and organize all your Snapchat memories with this step-by-step guide. No coding experience needed — you don't need to type a single command.
 
-Look at [windows_guide.md](https://github.com/jennathor/download_snap_memories/blob/main/Windows/windows_guide.md) for a Windows specific user guide, and [mac_guide.md](https://github.com/jennathor/download_snap_memories/blob/main/macOS/mac_guide.md) for a Mac specific guide.
+Go to [windows_guide.md](https://github.com/jennathor/download_snap_memories/blob/main/Windows/windows_guide.md) for the Windows guide, or [mac_guide.md](https://github.com/jennathor/download_snap_memories/blob/main/macOS/mac_guide.md) for the Mac guide. Each guide walks through two downloads (your Snapchat export, and this project) and one double-click (`Start.bat` on Windows, `Start.command` on Mac). That one click installs everything, finds your export automatically, downloads your memories, and verifies them — no other steps required.
 
 ---
 ---
@@ -11,10 +11,9 @@ Look at [windows_guide.md](https://github.com/jennathor/download_snap_memories/b
 
 ## Quick Start Checklist
 
-- [ ] Install Python, FFmpeg, and Python packages (2 min)
-- [ ] Set up folders (5 min)
-- [ ] Run the download script (varies - could be hours)
-- [ ] Run the verification script (optional, if some items didn't download)
+- [ ] Download your Snapchat `memories_history.html` export (below)
+- [ ] Download this project as a ZIP (below)
+- [ ] Double-click `Start.bat` / `Start.command` (does everything else automatically)
 
 ---
 
@@ -47,25 +46,19 @@ Look at [windows_guide.md](https://github.com/jennathor/download_snap_memories/b
    - Open the `html` folder inside the extracted data.
    - Locate the file named `memories_history.html` and download it. Keep it in your Downloads folder for now.
 
-### 2. Choose Where to Store Your Memories
+### 2. Download This Project
 
-**Recommended location:**
-- **Windows:** `C:\Memories`
-- **Mac:** Your home folder `/Users/YourUsername/Memories`
+Go to https://github.com/jennathor/download_snap_memories, click the green **Code** button → **Download ZIP**, then unzip it. See the [Windows guide](https://github.com/jennathor/download_snap_memories/blob/main/Windows/windows_guide.md) or [Mac guide](https://github.com/jennathor/download_snap_memories/blob/main/macOS/mac_guide.md) for exactly where to click next.
 
-**Tip:** Pick somewhere with plenty of storage space. Your memories could be many gigabytes!
+### 3. Where Your Memories Will Be Stored
 
-### 3. Download Required Files
-
-Before starting, download these files:
-1. `memories_download.py` (the main download script)
-2. `memories_verify_recover.py` (checks your downloads)
-
-Keep them in your Downloads folder for now.
+The Start script saves everything to a `Memories` folder in your home folder automatically (`C:\Users\<you>\Memories` on Windows, `/Users/<you>/Memories` on Mac) — no need to choose or create anything yourself. Just make sure that drive has plenty of free space; your memories could be many gigabytes!
 
 ---
 
 ## Troubleshooting
+
+The `Start.bat` / `Start.command` file handles installation and setup automatically, so most of these only come up if you used the Manual Setup section in your platform guide instead.
 
 ### "Command not found" errors
 - Make sure you completed all installation steps
@@ -74,7 +67,7 @@ Keep them in your Downloads folder for now.
 
 ### "Permission denied" errors
 - **Windows:** Right-click Command Prompt and choose "Run as administrator"
-- **Mac:** You may need to run `chmod +x memories_download.py` first
+- **Mac:** Make sure your chosen Memories folder is one you have write access to (the default, your home folder, always works)
 
 ### Downloads are failing
 - Check your internet connection
@@ -84,12 +77,11 @@ Keep them in your Downloads folder for now.
 
 ### FFmpeg errors
 - Double-check that FFmpeg is installed (`ffmpeg -version` in Terminal/Command Prompt)
-- Make sure the FFMPEG_PATH in both scripts matches your installation
+- If you used Manual Setup, make sure the `FFMPEG_PATH` in both scripts matches your installation
 
 ### Still stuck?
-- Check that both scripts have the exact same BASE_DIR and FFMPEG_PATH values
 - Make sure all three files (`memories_download.py`, `memories_verify_recover.py`, `memories_history.html`) are in your Memories folder
-- Verify you replaced "YourUsername" with your actual username
+- If you used Manual Setup, check that both scripts have the exact same `BASE_DIR` and `FFMPEG_PATH` values
 
 ---
 

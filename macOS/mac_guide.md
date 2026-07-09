@@ -1,118 +1,53 @@
 # Snapchat Memories Downloader - macOS Setup Guide
 
-Download and organize all your Snapchat memories with this step-by-step guide. No coding experience needed!
+Download and organize all your Snapchat memories with this step-by-step guide. No coding experience needed — you will not need to type a single command.
 
 ---
 
 ## Quick Start Checklist
 
-Estimated total time: **5-10 minutes** (setup) + **varies** (download time)
+Estimated total time: **under 2 minutes of clicking**, then it runs by itself (setup + download can take hours in the background).
 
-- [ ] Run the setup script (5-10 min - installs everything automatically!)
-- [ ] Set up folders (2 min)
-- [ ] Run the download script (varies - could be hours)
-- [ ] Run the verification script (optional)
+- [ ] Download this project as a ZIP (2 min)
+- [ ] Double-click `Start.command` (does everything else automatically)
 
 ---
 
 ## Before You Start
 
-### 1. Choose Where to Store Your Memories
+### 1. Get your Snapchat export
 
-**Recommended location (this guide assumes this is your storage location):**
-- Your home folder `/Users/YourUsername/Memories`
+Download your `memories_history.html` file from Snapchat's data export (see [the main README](../README.md) for those steps) and leave it in your **Downloads** folder — you don't need to move it anywhere.
 
-### 2. Download Required Files
+### 2. Download the project (one ZIP file)
 
-Before starting, download these files from the GitHub repository:
-1. `setup_mac.sh` (automatic installer, in the 'macOS' folder)
-2. `memories_download.py` (the main download script)
-3. `memories_verify_recover.py` (checks your downloads)
-4. Your Snapchat `memories_history.html` file (from Snapchat's data export)
+1. Go to the GitHub repo page: https://github.com/jennathor/download_snap_memories
+2. Click the green **Code** button → **Download ZIP**
+3. Double-click the downloaded zip file in your Downloads folder to unzip it (Finder does this automatically) — this creates a folder named something like `download_snap_memories-main`
+4. Open that folder, then open the **macOS** folder inside it — `Start.command` and both `.py` scripts are in there together
 
-Keep them in your Downloads folder for now.
+**Note:** downloading the whole project as a ZIP (rather than clicking individual file links) is what keeps `Start.command` double-clickable — clicking files one at a time strips that permission.
 
 ---
 
 ## macOS SETUP GUIDE
 
-### Step 1: Run the Automatic Setup Script
+### Step 1: Double-click `Start.command`
 
-1. **Open Terminal:**
-   - Press `Command (⌘) + Space`
-   - Type `terminal` and press Enter
-   - Go to your Downloads folder:
-   ```bash
-      cd ~/Downloads
-   ```
-   - Press Enter
-   - Make the setup script executable:
-   ```bash
-      chmod +x setup_mac.sh
-   ```
-   - Press Enter
-   - Run the setup script:
-   ```bash
-      ./setup_mac.sh
-   ```
-   - Press Enter
-   - You may be prompted for your password (you won't see it typed - that's normal)
-   - The script will automatically install:
-     - Homebrew (if needed)
-     - Python (if needed)
-     - FFmpeg
-     - All required Python packages
-   - This takes 5-10 min
-   - When you see "SUCCESS! All dependencies installed!" you're ready to continue
+- Open the folder where you unzipped the files
+- Double-click **`Start.command`**
+- A black Terminal window opens and does everything for you:
+  - Installs Homebrew, Python, and FFmpeg if you don't already have them (you may be asked for your Mac password — typing won't show, that's normal)
+  - Installs the required Python packages
+  - Finds your `memories_history.html` automatically (checks the same folder, Downloads, and Desktop)
+  - Creates `~/Memories` and downloads everything into it
+  - Runs the verification step automatically at the end
 
-**What just happened?** The script installed all the software needed to run the downloader. You don't need to do anything else!
+**If nothing happens when you double-click it:** right-click `Start.command` → **Open** → click **Open** again in the popup. This is normal macOS behavior for downloaded scripts and only needs doing once.
 
----
+**If it can't find your html file:** it'll ask you to drag `memories_history.html` into the window — just drag the file from Finder into the black window and press Enter.
 
-### Step 2: Set Up Folders and Files
-
-1. **Create your Memories folder:**
-   - Open Finder
-   - Click "Go" in the menu bar → "Home"
-   - Right-click in empty space → "New Folder"
-   - Name it: `Memories`
-   - Final location: `/Users/YourUsername/Memories`
-
-2. **Move your files:**
-   - Go to your Downloads folder
-   - Move these 3 files into your new `Memories` folder:
-     - `memories_download.py`
-     - `memories_verify_recover.py`
-     - `memories_history.html`
-
-**Tip:** All three files should now be in your Memories folder
-
----
-
-### Step 3: Download Your Memories!
-
-1. **Open Terminal in your Memories folder:**
-   - Press `Command (⌘) + Space`
-   - Type `terminal` and press Enter
-   - Type `cd ~/Memories` and press Enter
-
-2. **Start the download:**
-   ```
-   python3 memories_download.py
-   ```
-   - Press Enter
-   - You'll see progress bars showing downloads
-   - This could take several hours depending on how many memories you have
-   - **Tip:** You can leave your computer on (make sure it doesn't fall asleep) and come back later
-
-3. **After downloads finish, verify everything worked:**
- (Optional step, if all items were successfully downloaded, you're done!)
-   ```
-   python3 memories_verify_recover.py
-   ```
-   - Press Enter
-   - This checks all files and retries any failures
-   - If asked about deleting duplicates, type `yes` or `no`
+This can take several hours for a lot of memories — the window will tell you when it's done. You can leave your computer on and come back later (make sure it doesn't fall asleep).
 
 ---
 
@@ -131,6 +66,24 @@ Keep them in your Downloads folder for now.
 ---
 ---
 
+## Manual Setup (only if `Start.command` doesn't work for you)
+
+1. **Open Terminal:** `Command (⌘) + Space` → type `terminal` → Enter
+2. Install Homebrew, Python, and FFmpeg, then the Python packages:
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   brew install python ffmpeg
+   python3 -m pip install --user aiohttp aiofiles tqdm Pillow
+   ```
+3. Create a `Memories` folder in your home folder (Finder → Go → Home → New Folder), and move `memories_download.py`, `memories_verify_recover.py`, and `memories_history.html` into it.
+4. In Terminal: `cd ~/Memories`, then run:
+   ```bash
+   python3 memories_download.py
+   python3 memories_verify_recover.py
+   ```
+
+---
+
 ## Troubleshooting
 
 ### "Command not found" errors
@@ -139,7 +92,7 @@ Keep them in your Downloads folder for now.
 - Make sure you're using `python3` not `python`
 
 ### "Permission denied" errors
-- You may need to run `chmod +x memories_download.py` first
+- Make sure your chosen Memories folder is one you have write access to (the default, your home folder, always works)
 
 ### Downloads are failing
 - Check your internet connection
@@ -148,13 +101,12 @@ Keep them in your Downloads folder for now.
 - Made sure you Snapchat data has not expired (as of 12/17/25: data requests expire 3 days after receiving them)
 
 ### FFmpeg errors
-- Double-check that FFmpeg is installed (`ffmpeg -version` in Terminal/Command Prompt)
-- Make sure the FFMPEG_PATH in both scripts matches your installation
+- Double-check that FFmpeg is installed (`ffmpeg -version` in Terminal)
+- If you used Manual Setup, make sure the `FFMPEG_PATH` in both scripts matches your installation
 
 ### Still stuck?
-- Check that both scripts have the exact same BASE_DIR and FFMPEG_PATH values
 - Make sure all three files (`memories_download.py`, `memories_verify_recover.py`, `memories_history.html`) are in your Memories folder
-- Verify you replaced "YourUsername" with your actual username
+- If you used Manual Setup, check that both scripts have the exact same `BASE_DIR` and `FFMPEG_PATH` values
 
 ---
 

@@ -96,12 +96,31 @@ def scan_disk_files():
     return actual_files
 
 # ============================================================
+# SCAN PARTIAL SAVES (files saved without their overlay)
+# ============================================================
+def scan_partial_saves():
+    """Map media_id -> file path for items saved to partial_saves (missing overlay)"""
+    partial = {}
+    if not PARTIAL_SAVES_DIR.exists():
+        return partial
+
+    for file_path in PARTIAL_SAVES_DIR.glob("*_NO-OVERLAY.*"):
+        stem = file_path.stem.replace("_NO-OVERLAY", "")
+        parts = stem.split("_")
+        if len(parts) >= 3:
+            media_id = "_".join(parts[2:])
+            partial[media_id] = file_path
+
+    return partial
+
+# ============================================================
 # VERIFICATION: COMPARE MANIFEST VS DISK
 # ============================================================
-def verify_completeness(manifest_items, actual_files):
+def verify_completeness(manifest_items, actual_files, partial_saves=None):
     """Compare expected vs actual files"""
     print("\nVerifying completeness...")
-    
+    partial_saves = partial_saves or {}
+
     # Build expected files map
     expected = {}
     for item in manifest_items:
@@ -117,12 +136,16 @@ def verify_completeness(manifest_items, actual_files):
         key = f"{year}/{basename}"
         actual[key] = file_path
     
-    # Find missing files
+    # Find missing files (partial saves without an overlay don't count as missing)
     missing = []
+    partial = []
     for key, item in expected.items():
         if key not in actual:
-            missing.append(item)
-    
+            if item["media_id"] in partial_saves:
+                partial.append(item)
+            else:
+                missing.append(item)
+
     # Find unexpected files
     unexpected = []
     for key, file_path in actual.items():
@@ -151,11 +174,14 @@ def verify_completeness(manifest_items, actual_files):
     
     print(f"  ✓ Successfully downloaded: {len(actual) - len(unexpected)}")
     print(f"  ✗ Missing files: {len(missing)}")
+    if partial:
+        print(f"  ⚠ Saved without overlay (in partial_saves/): {len(partial)}")
     print(f"  ? Unexpected files: {len(unexpected)}")
     print(f"  ⚠ True duplicates (same timestamp + media_id): {len(duplicates)}")
-    
+
     return {
         "missing": missing,
+        "partial": partial,
         "unexpected": unexpected,
         "duplicates": duplicates,
         "verified": len(actual) - len(unexpected)
@@ -414,7 +440,7 @@ async def retry_missing_files(missing_items):
     """Retry downloading missing files"""
     if not missing_items:
         print("\nNo missing files to retry")
-        return {"success": 0, "failed": 0}
+        return {"success": 0, "failed": 0, "partial": 0}
     
     print(f"\nRetrying {len(missing_items)} missing files...")
     
@@ -614,21 +640,26 @@ def generate_final_report(manifest_count, verification_results, retry_stats): #,
     report.append(f"Total items expected (from HTML): {manifest_count}")
     report.append("")
     
+    partial_count = len(verification_results.get('partial', []))
+
     report.append("VERIFICATION RESULTS")
     report.append("-" * 70)
     report.append(f"Successfully verified: {verification_results['verified']}")
+    if partial_count:
+        report.append(f"Saved without overlay (partial_saves/): {partial_count}")
     report.append(f"Missing files: {len(verification_results['missing'])}")
     report.append(f"Unexpected files: {len(verification_results['unexpected'])}")
     report.append(f"Duplicate timestamps: {len(verification_results['duplicates'])}")
     report.append("")
-    
+
     if retry_stats:
         report.append("RECOVERY ATTEMPTS")
         report.append("-" * 70)
         report.append(f"Successfully recovered: {retry_stats['success']}")
+        report.append(f"Saved without overlay: {retry_stats.get('partial', 0)}")
         report.append(f"Failed to recover: {retry_stats['failed']}")
         report.append("")
-    
+
     # if integrity_issues:
     #     report.append("INTEGRITY ISSUES")
     #     report.append("-" * 70)
@@ -637,15 +668,18 @@ def generate_final_report(manifest_count, verification_results, retry_stats): #,
     #     if len(integrity_issues) > 10:
     #         report.append(f"  ... and {len(integrity_issues) - 10} more")
     #     report.append("")
-    
-    # Calculate final stats
-    still_missing = len(verification_results['missing']) - retry_stats.get('success', 0)
-    total_on_disk = verification_results['verified'] + retry_stats.get('success', 0)
-    completeness = (total_on_disk / manifest_count * 100) if manifest_count > 0 else 0
-    
+
+    # Calculate final stats. verification_results here is already the post-retry
+    # rescan, so its counts are current - no need to adjust with retry_stats.
+    still_missing = len(verification_results['missing'])
+    total_on_disk = verification_results['verified']
+    completeness = ((total_on_disk + partial_count) / manifest_count * 100) if manifest_count > 0 else 0
+
     report.append("FINAL STATUS")
     report.append("-" * 70)
-    report.append(f"Total files on disk: {total_on_disk}")
+    report.append(f"Total files on disk (with overlay): {total_on_disk}")
+    if partial_count:
+        report.append(f"Saved without overlay (partial_saves/): {partial_count}")
     report.append(f"Still missing: {still_missing}")
     report.append(f"Completeness: {completeness:.2f}%")
     report.append("")
@@ -690,10 +724,11 @@ async def main():
     
     # Scan disk
     actual_files = scan_disk_files()
-    
+    partial_saves = scan_partial_saves()
+
     # Verify completeness
-    verification_results = verify_completeness(manifest_items, actual_files)
-    
+    verification_results = verify_completeness(manifest_items, actual_files, partial_saves)
+
     # Check integrity
     #integrity_issues = check_file_integrity(actual_files)
     
@@ -702,8 +737,9 @@ async def main():
     
     # After retries, check what's still missing
     actual_files_after = scan_disk_files()
-    verification_after = verify_completeness(manifest_items, actual_files_after)
-    
+    partial_saves_after = scan_partial_saves()
+    verification_after = verify_completeness(manifest_items, actual_files_after, partial_saves_after)
+
     # Generate unrecoverable report
     generate_unrecoverable_report(verification_after["missing"], ERRORS_LOG)
     
